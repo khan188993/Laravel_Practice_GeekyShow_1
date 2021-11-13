@@ -1,0 +1,1 @@
+folder.subfolder.file_2.blade.php

@@ -3,90 +3,38 @@
 use Illuminate\Support\Facades\Route;
 
 
-//?basic Route By view Return
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-//2)route with parameter 
-// Routes in Laravel
-// 00:00 Introduction to Route
-
-//1) return and echo all can work  // 04:47 Route Returning String
+// 00:00:00 Introduction to View
+// 00:01:02 Creating a View = make name.blade.php in resource folder,
+// 00:02:13 Create Route for View
 Route::get('/', function () {
-    echo "nice";
-    return "hello";
+    return view('home');
 });
 
-// 05:29 Route Parameter // 08:18 Routes Multiple Parameter
+// 05:29 Route Parameter pass into view // 08:18 Routes Multiple Parameter
+// 00:25:20 Passing Data from Route to View
+// 00:28:47 Accessing Data which is passed from Route to View {{$name}}
 Route::get('post_id/{post_id}/comment_id/{comment_id}', function ($post_id,$comment_id) {
-    
-    return "post id: $post_id | comment id: $comment_id";
-
-    /* if($post_id ==4){
-        return "post id: $post_id | comment id: $comment_id";
-    }else{
-        return "not found";
-    } */
+    return view('home')->with(['post_id'=>$post_id,'comment_id'=>$comment_id,'simple_pass'=>20]);
+    return view('home',['post_id'=>$post_id,'comment_id'=>$comment_id,'simple_pass'=>'hello']);
 });
 
-// 10:16 Optional Route Parameter
-
-Route::get('users/{name?}', function ($name = null) {
-    return "hello $name"; //null na dile error khabo,
-});
-Route::get('default/{name?}', function ($name = 'sonam') {
-    return "hello $name";
-});
-// 14:20 Route Parameter and Regular Expression
-Route::get('reg/{name}/{id}', function ($name,$id) {
-    return "Name : $name Id: $id";
-})->where(['id'=>'[0-9]+','name'=>'[a-zA-Z]+']);
-
-
-// 18:49 Routes Parameter with Regular Expression helped Methods
-//using regular explation method
-Route::get('reg/{name}/{id}', function ($name,$id) {
-    return "Name : $name Id: $id";
-})->whereNumber('id')->whereAlpha('name');
-
-
-// 20:09 Redirect Routes
-Route::get('there', function () {
-    return "there";
+// 00:07:25 Creating View File inside Folder and Creating Route 
+Route::get('folder/file_1', function () {
+    return view('folder.file_1');
 });
 
-Route::redirect('here', 'there', 301); //by default 302 301 parmanent redirect,
-Route::permanentRedirect('hello','ok');
-
-// 22:14 Fallback Route
-route::fallback(function(){
-    // echo "Fallback";
-    return "Fallback page";
-});
-// 23:25 Route Methods
-
-Route::get('users/{id}', function ($id) {
-    //run after hit url 
+Route::get('folder/subfolder/file_2', function () {
+    return view('folder.subfolder.file_2');
 });
 
-Route::post('users/{id}', function ($id) {
-    // run after from submition 
+//if need to see only view without pass parameter 
+Route::view('onlyview', 'folder.file_1',['name'=>'arfan'])->name('routeName');
+
+Route::get('redirect', function () {
+    // return redirect(route('routeName'));
+    return redirect()->route('routeName');
 });
 
-//* put/patch/delete/options/
-
-// 23:42 Using Multiple Methods
-
-Route::match(['get', 'post','put'], '/user/profile', function () {
-    //if need to run same route in 2methods like form submit and show,
-});
-
-Route::any('hello/{id}', function ($id) {
-    //it will run in any method,
-});
-
-// 25:07 Coding
 
 
 

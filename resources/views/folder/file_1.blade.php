@@ -1,0 +1,1 @@
+folder.file_1.blade.php {{$name}}
