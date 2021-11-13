@@ -1,40 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\studentController;
+use App\Http\Controllers\ShowController;
 
+// 00:00 Introduction to Controller
+//app/http/controller,
 
-// 00:00:00 Introduction to View
-// 00:01:02 Creating a View = make name.blade.php in resource folder,
-// 00:02:13 Create Route for View
-Route::get('/', function () {
-    return view('home');
-});
+// 05:05 Defining Controller Class
+// php artisan make:controller studentController -r = resource soho,
+//php artisan make:controller ShowController --invokable = for single function
 
-// 05:29 Route Parameter pass into view // 08:18 Routes Multiple Parameter
-// 00:25:20 Passing Data from Route to View
-// 00:28:47 Accessing Data which is passed from Route to View {{$name}}
-Route::get('post_id/{post_id}/comment_id/{comment_id}', function ($post_id,$comment_id) {
-    return view('home')->with(['post_id'=>$post_id,'comment_id'=>$comment_id,'simple_pass'=>20]);
-    return view('home',['post_id'=>$post_id,'comment_id'=>$comment_id,'simple_pass'=>'hello']);
-});
+// 06:20 Creating Route for Controller Class
+Route::get('controller',[studentController::class,'show']);
 
-// 00:07:25 Creating View File inside Folder and Creating Route 
-Route::get('folder/file_1', function () {
-    return view('folder.file_1');
-});
+// 10:00 Getting Parameter in Controller
+route::get('controllerWithPara/{name}',[studentController::class,'showWithPara']);
 
-Route::get('folder/subfolder/file_2', function () {
-    return view('folder.subfolder.file_2');
-});
+// 20:15 Returning View from Controller Class
+// 33:45 Getting URL Parameter in Controller Class and Passing to View
+// 38:36 Passing Data from Controller to View
 
-//if need to see only view without pass parameter 
-Route::view('onlyview', 'folder.file_1',['name'=>'arfan'])->name('routeName');
+// 42:50 Multiple Methods inside Controller
+route::get('controllerwithview/{name}',[studentController::class,'showByview']);
 
-Route::get('redirect', function () {
-    // return redirect(route('routeName'));
-    return redirect()->route('routeName');
-});
-
-
-
-
+// 47:21 Single Action Controller
+//jodi ektai function run er need hoi,
+route::get('singleControler/{id}',ShowController::class);

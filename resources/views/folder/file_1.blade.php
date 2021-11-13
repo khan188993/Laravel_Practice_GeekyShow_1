@@ -1,1 +1,1 @@
-folder.file_1.blade.php {{$name}}
+folder.file_1.blade.php {{$name}} {{$controller_p}}
