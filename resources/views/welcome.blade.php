@@ -13,14 +13,13 @@
     *)anonymous component functions pass krte parbo na,    
     --}}
 
-    @php
-        $desc = 'card desction 1';
-    @endphp
-    <x-card title='Title of card' sub-title='sub title of card' :desc=$desc class='myclass servieClass'/>
-    <x-card title='Title of card' sub-title='sub title of card' :desc=$desc/>
 
-    <x-slider_ano class='sliderClass'/>
-    <x-slider_ano />
+    <x-header>
+        <x-slot name='title'>
+            <h3>X-slot data</h3>
+        </x-slot>
+        <h2>arfan khan</h2>
+    </x-header>
     
     
 </body>
