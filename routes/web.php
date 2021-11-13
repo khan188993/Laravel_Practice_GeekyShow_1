@@ -11,7 +11,5 @@ Route::view('include', 'include_practice.home_page',['data1'=>'passing data']);
 // 11:04 include Directive with Controller
 route::get('includecontroller/{data}',[studentController::class,'showInclude']);
 
-// 21:30 includeIf Directive
-// 23:38 includeWhen and includeUnless
-// 29:45 each Directive
-// 36:40 once Directive
+Route::view('componet','welcome');
+
