@@ -10,5 +10,7 @@
     <h2>View Practice:</h2>
     <h3>Post Id {{$post_id}} Comment Id {{$comment_id}} {{$simple_pass}}</h3>
 
+    
+
 </body>
 </html>
