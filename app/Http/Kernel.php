@@ -16,6 +16,7 @@ class Kernel extends HttpKernel
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
+        // \App\Http\Middleware\UnderConstruction::class,
         \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
@@ -44,6 +45,13 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        //group middleware,
+        'grpMiddleware' => [
+            'UnderConstruction' =>\App\Http\Middleware\UnderConstruction::class,
+        ],
+
+        
     ];
 
     /**
@@ -63,5 +71,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        // local middle for only route,
+        'VarMiddleWare' =>\App\Http\Middleware\VariableMiddleware::class,
+        'UnderConstruction' =>\App\Http\Middleware\UnderConstruction::class,
     ];
 }
