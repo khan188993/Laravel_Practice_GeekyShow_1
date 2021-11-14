@@ -13,3 +13,6 @@ route::get('includecontroller/{data}',[studentController::class,'showInclude']);
 
 Route::view('componet','welcome');
 
+Route::view('contact', 'contact');
+Route::view('hero', 'hero');
+
