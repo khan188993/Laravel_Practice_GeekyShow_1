@@ -17,4 +17,5 @@ Route::view('contact', 'contact');
 Route::view('hero', 'hero');
 // css js adding route 
 Route::view('css-js-adding', 'css-js-adding');
+Route::view('resource-css-js-adding', 'resource-css-js-adding');
 
