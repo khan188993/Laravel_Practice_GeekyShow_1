@@ -1,0 +1,1 @@
+alert('External Js by Public Fodler');
