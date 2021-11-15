@@ -4,45 +4,36 @@ namespace App\Http\Controllers;
 use App\Rules\upperCase;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterForm;
+use Illuminate\Support\Facades\DB;
 
 class studentController extends Controller
 {
 
-    function showForm(){
-        return view('form');
-    }
+    function showDB(){
+        $commerce_data = DB::select('select * from commerce where id = ?', [1]); //data array show korbe, pele
+        $commerce_data = DB::select('select id,name from commerce where id = ?', [1]);
+        $commerce_data = DB::select('select id,name from commerce order by id');
+        $commerce_data = DB::select('select id,name from commerce where id=:id',['id'=>3]);
 
-    function registerForm(RegisterForm $request){
-        $validation_data = $request->validated(); //validation data gulo pete caile eita lekhbo,
-        dd($validation_data);
-    }
+        // Field 'phone' doesn't have a default value (SQL: insert into commerce (name,city) values (Dayle,sutrapur)) //true return korbe or false
+        $commerce_data = DB::insert('insert into commerce (name,city,phone) values (?,?,?)', ['Dayle','sutrapur',334234243]);
+        $commerce_data = DB::update('update commerce set name = ? where id = ?', ['Arfan',3]); 
+        $commerce_data = DB::update('update commerce set name = ?,city =? where id = ?', ['Arfan','bangladesh',3]); //row affected will show = 2
+        
+        $commerce_data = DB::delete('delete from commerce where name = ?', ['Arfan']); //row affected will show = 2
 
-    /* function submitForm(Request $request){
+        //direct value pass korbo no parameter, short cut db::select 
+        $commerce_data = DB::unprepared('select name from commerce');
+        $commerce_data = DB::unprepared('delete from commerce where id = 5');
 
-        //form validate na hole old data thakle password bade sob guloi thakbe data,
-
-        $validationData = $request->validate([
-            // 'username'=>'required',
-            // 'username'=>'required|min:5',
-
-            'username'=>['required',new upperCase],
-            'password'=>['required','min:5',function($attribute,$value,$fail){
-                if(strtoupper($value)!==$value){ //fail hole run hobe,
-                    $fail(":attributes should be uppercase");
-                }
-            }]
-        ]);
-
-       
-
-        $requestData = $request->except('_token');
-
+        DB::transaction(function () {
+            DB::update('update commerce set name = ? where id = ?', ['shanto',9]);
+            DB::delete('delete from commerce where id = ?', [14]);
+        });
         
 
-        //validation na hobe niche gulo run korbe na,
-        echo "validated successfully";
-        return view('form',['requestData'=>$requestData]);
+        // dd($commerce_data);
 
-       
-    } */
+        // return view('db_test',['commerce_data'=>$commerce_data]);
+    }
 }
