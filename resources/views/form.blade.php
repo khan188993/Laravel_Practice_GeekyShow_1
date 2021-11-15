@@ -13,11 +13,23 @@
     <form action="form" method="post">
         @csrf
         Username:<input type="text" value="{{ old('username') }}" name="username" id="">
+        @error('username')
+            {{ $message }}
+        @enderror
+        <br>
         Password:<input type="password" value="{{ old('password') }}" name="password" id="">
+        @error('password')
+            {{ $message }}
+        @enderror
+        <br>
         country:<input type="text" value="{{ old('country') }}" name="country" id="">
+        @error('country')
+            {{ $message }}
+        @enderror
+        <br>
         <button type="submit">Submit</button>
     </form>
-    
+
     {{-- errors array show here --}}
     {{-- {{ $errors }} --}}
 
@@ -42,13 +54,7 @@
 
 
     {{-- basic error will show here most used --}}
-    @error('password')
-        {{ $message }}
-    @enderror
 
-    @error('username')
-        {{ $message }}
-    @enderror
 
     <h2>Form Data:</h2>
 

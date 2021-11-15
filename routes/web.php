@@ -10,4 +10,4 @@ use GuzzleHttp\Middleware;
 Route::match(['get'],'form',[studentController::class,'showForm']);
 // Route::match(['get'],'form_sub',[studentController::class,'form_sub']);
 
-Route::match(['post'],'form',[studentController::class,'submitForm']);
+Route::match(['post'],'form',[studentController::class,'registerForm']);

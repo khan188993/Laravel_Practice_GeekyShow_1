@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Rules\upperCase;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterForm;
 
 class studentController extends Controller
 {
@@ -11,7 +12,12 @@ class studentController extends Controller
         return view('form');
     }
 
-    function submitForm(Request $request){
+    function registerForm(RegisterForm $request){
+        $validation_data = $request->validated(); //validation data gulo pete caile eita lekhbo,
+        dd($validation_data);
+    }
+
+    /* function submitForm(Request $request){
 
         //form validate na hole old data thakle password bade sob guloi thakbe data,
 
@@ -38,5 +44,5 @@ class studentController extends Controller
         return view('form',['requestData'=>$requestData]);
 
        
-    }
+    } */
 }
