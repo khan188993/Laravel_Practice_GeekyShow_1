@@ -22,6 +22,9 @@ class studentController extends Controller
         *)for second path run make route of 2nd path and $variagle->withPath('secondpath');
         ?for using bootstarap in pagination 
         *)AppServiceProvider e use paginator and boot(paginator::useBootstrap())
+
+        *)type php artisan vendor:publish --tag=laravel-pagination
+        *)customize your code in view->vendor file,
         */
         $students = DB::table('commerce')->paginate(3);
         // $students = DB::table('commerce')->simplePaginate(3);

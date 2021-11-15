@@ -22,7 +22,12 @@
         {{ $stu->name }}<br>
     @endforeach
 
-    {{ $students->links() }}
+    {{ $students->links('pagination::bootstrap-4') }}
+
+    Count :{{$students->count()}}<br>
+    currentPage: {{$students->currentPage()}}<br>
+    Last Item: {{$students->lastItem()}}<br>
+    Last Item: {{$students->nextPageUrl()}}<br>
 </body>
 
 </html>
