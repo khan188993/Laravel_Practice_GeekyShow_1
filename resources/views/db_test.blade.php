@@ -2,13 +2,15 @@
 {{-- {{print_r($commerce_data)}} --}}
 {{-- Array ( [0] => stdClass Object ( [id] => 1 [name] => Arfan [city] => Dhaka [phone] => 41003235 ) ) 1 --}}
 
-{{-- {{$commerce_data['0']->id}} --}}
-@foreach ($commerce_data as $single_data)
+{{-- {{$commerce_data['0']->name}} --}}
+{{$commerce_data->name}}
+{{-- {{$commerce_data[0]}} pluck data will see like this --}}
+{{-- @foreach ($commerce_data as $single_data)
     {{$single_data->id}} <br>
     {{$single_data->name}} <br>
     {{$single_data->city}} <br>
     {{$single_data->phone}} <br>
-@endforeach
+@endforeach --}}
 
 {{dd($commerce_data)}}
 
