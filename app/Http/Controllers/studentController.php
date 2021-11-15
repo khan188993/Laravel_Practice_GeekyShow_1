@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Rules\upperCase;
 use Illuminate\Http\Request;
 
 class studentController extends Controller
@@ -19,9 +19,15 @@ class studentController extends Controller
             // 'username'=>'required',
             // 'username'=>'required|min:5',
 
-            'username'=>['required'],
-            'password'=>['required','min:5']
+            'username'=>['required',new upperCase],
+            'password'=>['required','min:5',function($attribute,$value,$fail){
+                if(strtoupper($value)!==$value){ //fail hole run hobe,
+                    $fail(":attributes should be uppercase");
+                }
+            }]
         ]);
+
+       
 
         $requestData = $request->except('_token');
 
