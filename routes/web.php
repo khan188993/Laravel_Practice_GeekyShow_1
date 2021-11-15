@@ -8,5 +8,6 @@ use GuzzleHttp\Middleware;
 // csrf na dile page expair asbe  route support check krte hobe,
 
 Route::match(['get'],'form',[studentController::class,'showForm']);
-Route::match(['get'],'form_sub',[studentController::class,'form_sub']);
+// Route::match(['get'],'form_sub',[studentController::class,'form_sub']);
+
 Route::match(['post'],'form',[studentController::class,'submitForm']);

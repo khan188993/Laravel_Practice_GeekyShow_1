@@ -140,6 +140,16 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'username' => [
+            'required' => ':attributes need for submission',
+        ],
+        'password' => [
+            'required' => ':attributes need for submission',
+        ],
+
+        
+
+        
     ],
 
     /*
@@ -153,6 +163,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'username' =>'username address',
+        'password' =>'pwd',
+    ],
 
 ];
