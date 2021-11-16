@@ -42,6 +42,9 @@
             </div>
             <div class="col-8">
                 <div class="students-data">
+                    
+                    {{-- {{print_r($students['0'])}} --}}
+                    @if (!empty($students['0']))
                     <table class="table">
                         <thead>
                             <tr>
@@ -53,25 +56,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (!empty($students))
                                 @foreach ($students as $stu)
                                 <tr>
                                     <td scope="row">{{$stu->id}}</td>
                                     <td>{{ $stu->name }}</td>
                                     <td>{{ $stu->city }}</td>
                                     <td>{{ $stu->phone }}</td>
-                                    <td><a class="btn btn-info" href="#">Edit</a></td>
-                                    <td><a class="btn btn-danger" href="#">Delete</a></td>
+                                    <td><a class="btn btn-info" href="{{asset('edit')."/".$stu->id}}">Edit</a></td>
+                                    <td><a class="btn btn-danger" href="{{asset('delete')."/".$stu->id}}">Delete</a></td>
                                 </tr>
                                 @endforeach
-                            @else 
-                                <h4>Commerce student Table is Empty Pleas Insert Some Data.</h4>
-                            @endif
-
-                            
-
                         </tbody>
-                    </table>
+                    </table> 
+                    @else 
+                    <h4>Commerce student Table is Empty Pleas Insert Some Data.</h4>
+                    @endif
+                    
                 </div>
             </div>
         </div>

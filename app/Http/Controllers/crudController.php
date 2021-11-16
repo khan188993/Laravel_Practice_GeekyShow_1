@@ -40,49 +40,32 @@ class crudController extends Controller
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $students = DB::table('commerce')->find($id);
+        // dd($students);
+        return view('edit',['students'=>$students]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+
+        if($request->filled(['name','city','phone'])){
+            DB::table('commerce')->where('id',$id)->update([
+                'name' =>$request->input('name'),
+                'city' =>$request->input('city'),
+                'phone' =>$request->input('phone'),
+            ]);
+
+            return redirect(route('index'))->with('status','Update Student Successfully');
+        }
+        else{
+            $students = DB::table('commerce')->find($id);
+            return view('edit',['students'=>$students,'message'=>'Insert Data Properly']);
+        }
+        
     }
 
     /**
@@ -93,6 +76,7 @@ class crudController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('commerce')->where('id',$id)->delete();
+        return redirect(route('index'))->with('status','Delete Student Successfully');
     }
 }

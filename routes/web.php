@@ -26,4 +26,7 @@ return with fill properly and valo moto filled thakle inserted successfully,
 
 Route::get('/',[crudController::class,'index'])->name('index');
 Route::POST('/',[crudController::class,'create']);
+Route::get('edit/{id}',[crudController::class,'edit'])->name('edit');
+Route::put('edit/{id}',[crudController::class,'update'])->name('update');
+Route::get('delete/{id}',[crudController::class,'destroy'])->name('destroy');
 
