@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\commerceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\studentController;
 use App\Http\Controllers\ShowController;
 use GuzzleHttp\Middleware;
 use  App\Http\Controllers\crudController;
+use App\Models\commerce;
+
 /* 
 !Cruds Steps..
 *)making form of boootstrap,
@@ -29,4 +32,6 @@ Route::POST('/',[crudController::class,'create']);
 Route::get('edit/{id}',[crudController::class,'edit'])->name('edit');
 Route::put('edit/{id}',[crudController::class,'update'])->name('update');
 Route::get('delete/{id}',[crudController::class,'destroy'])->name('destroy');
+
+Route::get('commerce',[commerceController::class,'show']);
 
