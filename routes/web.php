@@ -6,32 +6,31 @@ use App\Http\Controllers\studentController;
 use App\Http\Controllers\ShowController;
 use GuzzleHttp\Middleware;
 use  App\Http\Controllers\crudController;
+use  App\Http\Controllers\AuthorController;
+use  App\Http\Controllers\PostController;
+use  App\Http\Controllers\IndexController;
 use App\Models\commerce;
 
 /* 
-!Cruds Steps..
-*)making form of boootstrap,
-*)making controller for route,
-*)making view for controller 
-*)pass view by controller,
-*)
+!One to many relationship,
+*)make your two table by model, and add column by migration and 
+*)after migration column add data make relation into your model which relation you want to make with each other,
+*)after create relation you can get data and insert data by controller,
+*)make route for your controller,
 
-*)making route and show view by controller 
-*)index,create, update, delete functions create and 
-*)index e data retrive kore view te pass kore table akare row te show kre dibo and if condition check korebo table empty er,
-*)form post hit e create method run korbo and tar bitor data insert kore dibo and view te with er shate status dibo, input empyt check e 
-return with fill properly and valo moto filled thakle inserted successfully,
-*) status gulo check kore show kore dibo,
-*)table k row er boddhe if codtion lagiye check kore loop kore show kore dibo,
-*)
+*)for add data in author you just simple add your data 
+*)for adding data into post as there is a forein key which is related to author table so 
+you have to find your author data and then call your post function and pass post new data,
+
+*)to retrinve data form table just pass id and add related table model name,
 
 */
 
-Route::get('/',[crudController::class,'index'])->name('index');
-Route::POST('/',[crudController::class,'create']);
-Route::get('edit/{id}',[crudController::class,'edit'])->name('edit');
-Route::put('edit/{id}',[crudController::class,'update'])->name('update');
-Route::get('delete/{id}',[crudController::class,'destroy'])->name('destroy');
+Route::get('add_author',[AuthorController::class,'add_author']);
+Route::get('show_author/{id}',[AuthorController::class,'show_author']);
+Route::get('add_post/{id}',[PostController::class,'add_post']);
+Route::get('show_post/{id}',[PostController::class,'show_post']);
+Route::get('index_show/{id}',[IndexController::class,'index_show']);
 
-Route::get('commerce',[commerceController::class,'show']);
+
 
